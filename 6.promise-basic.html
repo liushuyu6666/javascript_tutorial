@@ -8,13 +8,12 @@
     <title>Sync vs Async</title>
 </head>
 <body>
-<h1>Callback Example - Bank wait the queue then withdrawl money</h1>
+<h1>Promise Basic</h1>
 <script>
     const promiseExample = new Promise(function (resolve, reject) {
         setTimeout(() => {
             if (false) {
                 resolve("resolved data");
-                return "resolved data";
             } else {
                 reject("rejected data");
             }

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sync vs Async</title>
+</head>
+<body>
+<h1>fetch Basic</h1>
+<script>
+    let options = {
+        method: "GET"
+    }
+
+    fetch('https://api.github.com/users/GoodSpeed-HL', options)
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        }
+    );
+
+    let options2 = {
+        method: 'POST',
+        body: JSON.stringify({
+            name: 'Joe',
+            age: '21'
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }
+
+    fetch('https://httpbin.org/post', options2).then(response => response.json()).then(response => {
+        console.log(response);
+    });
+
+    let options3 = {
+        method: 'PUT',
+        body: JSON.stringify({
+            name: 'Joe',
+            age: '21'
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }
+
+    fetch('https://httpbin.org/put', options3).then(response => response.json()).then(response => {
+        console.log(response);
+    });
+
+    let options4 = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }
+
+    fetch('https://httpbin.org/delete', options4).then(response => response.json()).then(response => {
+        console.log(response);
+    });
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sync vs Async</title>
+</head>
+<body>
+<h1>fetch Basic</h1>
+<script>
+    const APIENDPOINT = 'https://ucarrerca.free.beeceptor.com';
+
+    callAPI1 = () => {
+        return fetch(`${APIENDPOINT}/api1`).then(response => response.json()).then(response => {
+            return response;
+        })
+    }
+
+    callAPI2 = (response) => {
+        return fetch(`${APIENDPOINT}/api2?input=${response.result}`).then(response => response.json()).then(response => {
+            return response;
+        })
+    }
+
+    callAPI1()
+        .then(response => {
+            return callAPI2(response)
+        }).then(response => {
+            console.log(response)
+        });
+
+
+</script>
+</body>
+</html>
