@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sync vs Async</title>
+</head>
+<body>
+    <h1>Callback Example - Bank wait the queue then withdrawl money</h1>
+    <script>
+        let callbackHellExample = () =>{
+            callAPI("api1", function (result) {
+                callAPI2("api2" + result, function (result2) {
+                    callAPI3("api3" + result2, function (result3) {
+                        callAPI4("api4" + result3, function (result4) {
+                            callAPI5("api5" + result4, function (result5) {
+                                //do something
+                            })
+                        })
+                    })
+                })
+            })
+        }
+
+        let callbackHellExapmleWithErrorHandle = () => {
+
+            callAPI("api1", function (result) {
+                if(result.error){
+                    //handle error
+                    return;
+                }
+                callAPI2("api2" + result, function (result2) {
+                    if(result2.error){
+                        //handle error
+                        return;
+                    }
+                    callAPI3("api3" + result2, function (result3) {
+                        if(result3.error){
+                            //handle error
+                            return;
+                        }
+                        callAPI4("api4" + result3, function (result4) {
+                            if(result4.error){
+                                //handle error
+                                return;
+                            }
+                            callAPI5("api5" + result4, function (result5) {
+                                if(result5.error){
+                                    //handle error
+                                    return;
+                                }
+                                //do something
+                            })
+                        })
+                    })
+                })
+            })
+
+        }
+    </script>
+</body>
+</html>

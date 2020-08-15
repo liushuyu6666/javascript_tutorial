@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sync vs Async</title>
+</head>
+<body>
+    <h1>Callback Example - Bank wait the queue then withdrawl money</h1>
+    <script>
+        function iWantToWithdrawlMoney() {
+            console.log("I talk with the bank staff and withdrawled $100.00");
+        }
+
+        function iWantToWithdrawlMoneyButTheyDontHave() {
+            console.log("I am mad at myself");
+        }
+
+        function iNeedWaitWhenOtherPeopleAreServed(successCallback, failCallback) {
+            let bankBalance = 500;
+            let queue = ["Person 1", "Person 2", "Person 3"];
+            let taskId = setInterval(() => {
+                let person = queue.shift();
+                let amount = Math.random() * 100;
+                console.log(`${person} is withdrawling ${amount}`);
+                bankBalance -= amount;
+
+                if(bankBalance < 100){
+                    console.log(`bank balance ${bankBalance}` )
+                    failCallback();
+                    clearInterval(taskId);
+                }
+                else if(queue.length === 0){
+                    successCallback();
+                    clearInterval(taskId);
+                }
+            }, 3000);
+        }
+
+        iNeedWaitWhenOtherPeopleAreServed(iWantToWithdrawlMoney, iWantToWithdrawlMoneyButTheyDontHave);
+    </script>
+</body>
+</html>

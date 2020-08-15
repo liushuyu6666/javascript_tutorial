@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sync vs Async</title>
+</head>
+<body>
+<h1>Callback Example - Bank wait the queue then withdrawl money</h1>
+<script>
+    const promiseExample = new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            if (false) {
+                resolve("resolved data");
+                return "resolved data";
+            } else {
+                reject("rejected data");
+            }
+        }, 1500);
+    })
+    console.log(promiseExample)
+    promiseExample.then(function (result) {
+        console.log(result)
+    }).catch(function (error) {
+        console.log(error)
+    })
+</script>
+</body>
+</html>
