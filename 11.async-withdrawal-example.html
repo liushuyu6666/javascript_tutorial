@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sync vs Async</title>
+</head>
+<body>
+<h1>Async Example</h1>
+<script>
+    let futureBankBalancePromise = function (){
+        return new Promise((resolve, reject) => {
+            let bankBalance = 500;
+            let queue = ["Person 1", "Person 2", "Person 3"];
+            let taskId = setInterval(() => {
+                let person = queue.shift();
+                let amount = Math.random() * 100;
+                console.log(`${person} is withdrawing ${amount}`);
+                bankBalance -= amount;
+
+                if (bankBalance < 100) {
+                    clearInterval(taskId);
+                    reject(`bank balance : ${bankBalance} low < 100 `);
+                } else if (queue.length === 0) {
+                    clearInterval(taskId);
+                    resolve(true);
+
+                }
+            }, 3000);
+        });
+    }
+
+    async function run(){
+        try{
+            let result = await futureBankBalancePromise();
+            console.log(result);
+            console.log("I talk with the bank staff and get $100.00");
+        }
+        catch (ex){
+            console.error(ex);
+        }
+    }
+    run();
+</script>
+</body>
+</html>

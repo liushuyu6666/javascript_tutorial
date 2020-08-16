@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sync vs Async</title>
+</head>
+<body>
+    <h1>Sync vs Async</h1>
+    <script>
+        2s delay
+        console.log("step 1");
+        let i = 0;
+        let result = 0;
+        function asyncExample(){
+            setTimeout(function (){
+                i = i + 2;
+                console.log("step 2");
+            },2000)
+        }
+        result = i * 5;
+        console.log(result);
+        console.log("step 3");
+        //solve result = 0 issue
+        let i = 0;
+        let result = 0;
+        function asyncExample2(callback){
+            setTimeout(function (){
+                i = i + 2;
+                callback(i);
+            },2000)
+        }
+
+        function callback(i){
+            result = i * 5;
+            console.log(result);
+        }
+        asyncExample2(callback)
+    </script>
+</body>
+</html>

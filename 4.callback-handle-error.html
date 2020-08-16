@@ -8,13 +8,13 @@
     <title>Sync vs Async</title>
 </head>
 <body>
-    <h1>Callback Example - Bank wait the queue then withdrawl money</h1>
+    <h1>Callback Example - Bank wait the queue then Withdrawal money</h1>
     <script>
-        function iWantToWithdrawlMoney() {
+        function iWantToWithdrawalMoney() {
             console.log("I talk with the bank staff and get $100.00");
         }
 
-        function iWantToWithdrawlMoneyButTheyDontHave() {
+        function iWantToWithdrawalMoneyButTheyDontHave() {
             console.log("I am mad at myself");
         }
 
@@ -24,7 +24,7 @@
             let taskId = setInterval(() => {
                 let person = queue.shift();
                 let amount = Math.random() * 100;
-                console.log(`${person} is withdrawling ${amount}`);
+                console.log(`${person} withdraw ${amount}`);
                 bankBalance -= amount;
 
                 if(bankBalance < 100){
@@ -39,7 +39,7 @@
             }, 3000);
         }
 
-        iNeedWaitWhenOtherPeopleAreServed(iWantToWithdrawlMoney, iWantToWithdrawlMoneyButTheyDontHave);
+        iNeedWaitWhenOtherPeopleAreServed(iWantToWithdrawalMoney, iWantToWithdrawalMoneyButTheyDontHave);
     </script>
 </body>
 </html>

@@ -10,14 +10,12 @@
 <body>
 <h1>Promise Basic</h1>
 <script>
+
+    //although promise is generally for async process, it can process resolve or reject directly without waiting
+    //example: without waiting
     const promiseExample = new Promise(function (resolve, reject) {
-        setTimeout(() => {
-            if (false) {
-                resolve("resolved data");
-            } else {
-                reject("rejected data");
-            }
-        }, 1500);
+        resolve("resolved data");
+        //reject("reject data");
     })
 
     promiseExample.then(function (result) {
@@ -25,6 +23,24 @@
     }).catch(function (error) {
         console.log(error)
     })
+
+    //example: with waiting
+    /*const promiseExample = new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            if (false) {
+                resolve("resolved data");
+            } else {
+                reject("rejected data");
+            }
+        }, 1500);
+
+    promiseExample.then(function (result) {
+        console.log(result)
+    }).catch(function (error) {
+        console.log(error)
+    })
+
+    })*/
 </script>
 </body>
 </html>
