@@ -25,22 +25,22 @@
     })
 
     //example: with waiting
-    /*const promiseExample = new Promise(function (resolve, reject) {
+    const promiseExample = new Promise(function (resolve, reject) {
         setTimeout(() => {
             if (false) {
                 resolve("resolved data");
             } else {
                 reject("rejected data");
             }
-        }, 1500);
+        }, 1500)});
 
     promiseExample.then(function (result) {
-        console.log(result)
+        console.log("resolve:" + result)
     }).catch(function (error) {
-        console.log(error)
+        console.log("reject:" + error)
     })
 
-    */
+
 </script>
 </body>
 </html>
